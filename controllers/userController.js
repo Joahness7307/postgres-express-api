@@ -54,3 +54,14 @@ exports.updateUser = async (req, res) => {
       res.status(500).json({ error: error.message });
   }
 };
+
+// Delete User
+exports.deleteUser = async (req, res) => {
+  try {
+      const { id } = req.params;
+      await User.destroy({ where: { id } });
+      res.json({ message: "User deleted successfully" });
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+};
