@@ -42,3 +42,15 @@ exports.addUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+// Update User
+exports.updateUser = async (req, res) => {
+  try {
+      const { name, email } = req.body;
+      const { id } = req.params;
+      await User.update({ name, email }, { where: { id } });
+      res.json({ message: "User updated successfully" });
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+};
